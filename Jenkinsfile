@@ -5,13 +5,14 @@ pipeline {
     options {
         timeout(time: 10, unit: 'SECONDS') 
         disableConcurrentBuilds()
-        retry(2)
+        retry(1)
     }
     stages {
         stage('Build') {
             steps {
                 sh 'echo this is build'  
-                sh 'sleep 10'
+                // sh 'sleep 10'
+                error "faile"
             }
         }
         stage('Test') {
@@ -35,7 +36,7 @@ pipeline {
         }
         failure {
              echo "this section run when failure"
-             error "faile"
+             
         }
     } 
 }
