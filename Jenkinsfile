@@ -23,14 +23,12 @@ pipeline {
         }
         stage('Test') {
             steps {
-                echo "this is Test :::: ${env.GIT_BRANCH}" 
+                sh 'echo this is Test'  
             }
         }
         stage('Deploy') {
             when {
-                allOf {
-                    branch 'main'
-                }
+                expression {env.GIT_BRANCH == 'origin/main'}
             }
             steps {
                 sh 'echo this is Deploy' 
